@@ -1,27 +1,35 @@
-{% extends'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
-    <title>Document</title>
-</head>
-<body>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
-</html>
+{% extends 'base.html'%}
+{% block content %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='CSS/style.css')}}">
+{% endblock %}
+<div id="posts">
+    <div class="row">
+    {%for post in posts%}
+    <div class=" cards col-md-6 col-md-6">
+        <div class="thumbnail">
+            <div class="caption">
+            <p>title:{{post.title}}</p>
+            <p>category:{{post.category}}</p>
+            <p>content:{{post.content}}</p>
+        </div>
+    <div class="panel-footer">
+                <a href="{{ url_for('main.post_details', id = post.id)}}"><button class="btn-success">Add a
+                    comment</button></a>
+        <div class="col-md-4 upvote">
+                <span class="foot"> <a href="{{url_for('main.like',id = post.id)}}"><button
+                class="btn-success">Upvotes:{{post.upvotes.count()}}</button></a></span>
+                </div>
+                <div class="col-md-4 downvote">
+                <span class="foot"> <a href="{{url_for('main.dislike',id = post.id)}}"> <button
+                    class="btn-danger">Downvotes:{{post.downvotes.count()}}</button></a></span>
+            </div>
+            </div>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{%endblock%}
