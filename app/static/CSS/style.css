@@ -1,9 +1,15 @@
 *body{
         padding: 0;
         margin: 0;
-        background-color: bisque;
+        
 }
 
-.btn{
-background-color:#660e0e21;
+
+.caption{
+        background-color:#C4DBFA;
+        opacity: 100;
 }
+.btn1{
+        margin:20px;
+}
+
