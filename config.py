@@ -18,10 +18,10 @@ class TestConfig(Config):
     
     
 class ProdConfig(Config):
-    database=os.getenv('DATABASE_URL')
-    if database and database.startswith("postgres://"):
-        database = database.replace("postgres://", "postgresql://", 1)
-    SQLALCHEMY_DATABASE_URI=database
+    uri = os.getenv('DATABASE_URL')
+    if uri and uri.startswith('postgres://'):
+        uri = uri.replace('postgres://', 'postgresql://', 1)
+    SQLALCHEMY_DATABASE_URI = uri
 
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:nancy1234@localhost/pitches'
