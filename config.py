@@ -18,7 +18,8 @@ class TestConfig(Config):
     
     
 class ProdConfig(Config):
-    uri = os.getenv('DATABASE_URL')
+    # uri = os.getenv('DATABASE_URL')
+    uri = "postgres://asuitrwkomcmtb:9f47b5f5960243ce9522e757d1fa5e66fc8cf091692f09ce67d839e24cbe5672@ec2-52-4-104-184.compute-1.amazonaws.com:5432/d1e1gm62ugig86"
     if uri and uri.startswith('postgres://'):
         uri = uri.replace('postgres://', 'postgresql://', 1)
     SQLALCHEMY_DATABASE_URI = uri
